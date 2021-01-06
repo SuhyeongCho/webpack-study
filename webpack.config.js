@@ -14,8 +14,21 @@ module.exports = {
     new HtmlWebpackPlugin({ title: "Code Splitting" }),
   ],
   output: {
-    filename: "[name].bundle.js",
+    filename: "[name].[contenthash].bundle.js",
     path: path.resolve(__dirname, "dist"),
     publicPath: "/",
+  },
+  optimization: {
+    moduleIds: "deterministic",
+    runtimeChunk: "single",
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name: "vendors",
+          chunks: "all",
+        },
+      },
+    },
   },
 };
