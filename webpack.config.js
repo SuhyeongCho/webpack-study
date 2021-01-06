@@ -4,12 +4,14 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = {
   mode: "development",
-  entry: { index: "./src/index.js", print: "./src/print.js" },
+  entry: {
+    index: "./src/index.js",
+  },
   devtool: "inline-source-map",
-  devServer: { contentBase: "./dist" },
+  devServer: { contentBase: "./dist", hot: true },
   plugins: [
     new CleanWebpackPlugin({ cleanStaleWebpackAssets: false }),
-    new HtmlWebpackPlugin({ title: "Development" }),
+    new HtmlWebpackPlugin({ title: "Code Splitting" }),
   ],
   output: {
     filename: "[name].bundle.js",
