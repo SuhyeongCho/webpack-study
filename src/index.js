@@ -1,12 +1,14 @@
-async function getComponent() {
-  const element = document.createElement("div");
-  const { default: _ } = await import("lodash");
+import { header, footer } from "./layouts";
+import { newsList } from "./news";
 
-  element.innerHTML = _.join(["Hello", "webpack"], " ");
+const app = async () => {
+  const element = document.createElement("div");
+
+  element.appendChild(header());
+  element.appendChild(await newsList());
+  element.appendChild(footer());
 
   return element;
-}
+};
 
-getComponent().then((component) => {
-  document.body.appendChild(component);
-});
+app().then((comp) => document.body.appendChild(comp));

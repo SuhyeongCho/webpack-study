@@ -8,10 +8,18 @@ module.exports = {
     index: "./src/index.js",
   },
   devtool: "inline-source-map",
-  devServer: { contentBase: "./dist", hot: true },
+  devServer: {
+    port: 3001,
+    hot: true,
+  },
+  module: {
+    rules: [{ test: /\.css$/, use: ["style-loader", "css-loader"] }],
+  },
   plugins: [
-    new CleanWebpackPlugin({ cleanStaleWebpackAssets: false }),
-    new HtmlWebpackPlugin({ title: "Code Splitting" }),
+    new CleanWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      title: "뉴스리스트",
+    }),
   ],
   output: {
     filename: "[name].[contenthash].bundle.js",
