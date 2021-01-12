@@ -1,6 +1,6 @@
 import _ from "lodash";
 
-import "./style.css";
+import "./style.scss";
 
 export const header = () => {
   const element = document.createElement("div");

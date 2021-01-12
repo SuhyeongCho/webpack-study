@@ -1,4 +1,4 @@
-import "./style.css";
+import "./style.scss";
 
 export const newsItem = (article) => {
   const { title, urlToImage, url, description } = article;

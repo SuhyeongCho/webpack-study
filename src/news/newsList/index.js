@@ -2,7 +2,7 @@ import axios from "axios";
 import { newsItem } from "../newsItem";
 import _ from "lodash";
 
-import "./style.css";
+import "./style.scss";
 
 export const newsList = async () => {
   const wrapper = document.createElement("div");

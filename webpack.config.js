@@ -13,7 +13,13 @@ module.exports = {
     hot: true,
   },
   module: {
-    rules: [{ test: /\.css$/, use: ["style-loader", "css-loader"] }],
+    rules: [
+      { test: /\.css$/, use: ["style-loader", "css-loader"] },
+      {
+        test: /\.s[ac]ss$/,
+        use: ["style-loader", "css-loader", "sass-loader"],
+      },
+    ],
   },
   plugins: [
     new CleanWebpackPlugin(),
