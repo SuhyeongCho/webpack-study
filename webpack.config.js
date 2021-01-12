@@ -15,6 +15,11 @@ module.exports = {
   },
   module: {
     rules: [
+      // { test: /\.css$/, use: ["style-loader", "css-loader"] },
+      // {
+      //   test: /\.s[ac]ss$/,
+      //   use: ["style-loader", "css-loader", "sass-loader"],
+      // },
       { test: /\.css$/, use: [MiniCssExtractPlugin.loader, "css-loader"] },
       {
         test: /\.s[ac]ss$/,
@@ -30,7 +35,7 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      title: "뉴스리스트",
+      title: "뉴스 리스트",
     }),
     new MiniCssExtractPlugin(),
   ],
