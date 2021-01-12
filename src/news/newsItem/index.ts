@@ -1,6 +1,13 @@
 import "./style.scss";
 
-export const newsItem = (article) => {
+export type Article = {
+  title?: string;
+  urlToImage?: string;
+  url?: string;
+  description?: string;
+};
+
+export const newsItem = (article: Article) => {
   const { title, urlToImage, url, description } = article;
   const element = document.createElement("a");
 

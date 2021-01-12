@@ -5,7 +5,7 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 module.exports = {
   mode: "development",
   entry: {
-    index: "./src/index.js",
+    index: "./src/index.ts",
   },
   devtool: "inline-source-map",
   devServer: {
@@ -19,7 +19,12 @@ module.exports = {
         test: /\.s[ac]ss$/,
         use: ["style-loader", "css-loader", "sass-loader"],
       },
+      { test: /\.jsx?$/, use: ["babel-loader"], exclude: /node_modules/ },
+      { test: /\.tsx?$/, use: ["ts-loader"], exclude: /node_modules/ },
     ],
+  },
+  resolve: {
+    extensions: [".tsx", ".ts", ".js"],
   },
   plugins: [
     new CleanWebpackPlugin(),
