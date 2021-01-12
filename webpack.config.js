@@ -1,6 +1,7 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
   mode: "development",
@@ -14,10 +15,10 @@ module.exports = {
   },
   module: {
     rules: [
-      { test: /\.css$/, use: ["style-loader", "css-loader"] },
+      { test: /\.css$/, use: [MiniCssExtractPlugin.loader, "css-loader"] },
       {
         test: /\.s[ac]ss$/,
-        use: ["style-loader", "css-loader", "sass-loader"],
+        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
       },
       { test: /\.jsx?$/, use: ["babel-loader"], exclude: /node_modules/ },
       { test: /\.tsx?$/, use: ["ts-loader"], exclude: /node_modules/ },
@@ -31,6 +32,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: "뉴스리스트",
     }),
+    new MiniCssExtractPlugin(),
   ],
   output: {
     filename: "[name].[chunkhash].bundle.js",
