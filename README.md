@@ -203,3 +203,60 @@ module.exports = {
 	...
 }
 ```
+
+## Optimization
+
+**Optimization**은 웹팩 빌드시에 **최적화**를 하기 위한 방법
+
+`splitChunks` 의 `cacheGroups` 옵션은 **특정 조건에 따라 Chunk를 생성**함
+
+`chunks` 옵션에는 `initial`, `async`, `all` 이 존재, 필수로 지정해야 함
+
+`initial` 옵션은 **정적 모듈**에 대한 최적화 진행
+
+`async` 옵션은 **비동기 모듈**에 대한 최적화 진행
+
+`all` 옵션은 **모든 모듈(정적 모듈, 비동기 모듈)**에 대한 최적화 진행
+
+다음 코드는 `vendor` 라는 Chunk 그룹을 생성하고, 이 그룹에는 `node_modules` 디렉토리 안의 파일을 모두 포함시켜 `vendors` 라는 파일이름으로 청크 파일을 만들라는 것을 의미
+
+```tsx
+module.exports = {
+	...
+	optimization: {
+		splitChunks: {
+			cacheGroups: {
+				vendor: {
+					test: /[\\/]node_modules[\\/]/,
+          name: "vendors",
+          chunks: "all",
+				}
+			}
+		}
+	}
+}
+```
+
+`runtimeChunk`는 **runtime**시에 빌드되는 코드를 새로운 파일로 만듦
+
+```tsx
+module.exports = {
+	...
+	optimization: {
+		runtimeChunk: "single"
+	}
+}
+```
+
+## HMR
+
+**HMR**은 브라우저를 새로 고치지 않아도 **웹팩으로 빌드한 결과물이 웹 애플리케이션에 실시간으로 반영**될 수 있게 도와주는 설정
+
+```tsx
+module.exports = {
+	...
+	devServer: {
+		hot: true
+	}
+}
+```
